@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Board
 {
     private String name;
-    private String[][] board;
+    private static String[][] board;
 
     public Board()
     {
@@ -54,7 +54,7 @@ public class Board
     public void getClues()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Do you want to fill in a (r)ow or (c)olumn? ");
+        System.out.print("Do you want a hint for a (r)ow or (c)olumn? ");
         String choice = scanner.nextLine();
 
         if (choice.equals("r"))
@@ -116,22 +116,19 @@ public class Board
 
     public void checkAnswers()
     {
+
         String[] answers = {"o", "r", "e", "v", "i", "n", "o", "d", "d"};
-        int count = 0;
-        for (int rows = 0; rows < board.length; rows++)
+
+        System.out.println("The correct answers were:");
+        for (int i = 0; i < answers.length; i++)
         {
-            for (int cols = 0; cols < board[0].length; cols++)
+
+            System.out.print(answers[i] + " ");
+            if (i % 3 == 2)
             {
-                for (int x = 0; x < answers.length; x++)
-                {
-                    if (board[rows][cols].equals(answers[x]))
-                    {
-                        count++;
-                    }
-                }
+                System.out.println();
             }
         }
-    System.out.println("You got " + count + " of 9 correct. Thanks for playing, " + name + "!");
     }
 
     public static Clues[] setupRowClues()
